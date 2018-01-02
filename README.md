@@ -1,4 +1,4 @@
-![Title](images/title.png)
+<img src="images/title.png" alt="Title" width="600px"/>
 
 Python and Matlab code, which accompany the book *3D Kinematics*
 The book will be available from Springer, about March 2018
