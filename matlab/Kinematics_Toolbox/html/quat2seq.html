@@ -1,0 +1,169 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>quat2seq</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-01-02"><meta name="DC.source" content="quat2seq.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>quat2seq</h1><!--introduction--><pre class="language-matlab">This <span class="string">function</span> <span class="string">takes</span> <span class="string">a</span> <span class="string">quaternion</span>, and <span class="string">calculates</span> <span class="string">the</span> <span class="string">corresponding</span> <span class="string">angles</span> <span class="string">for</span> <span class="string">sequenctial</span> <span class="string">rotations.</span>
+</pre><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Input Arguments</a></li><li><a href="#3">Output Arguments</a></li><li><a href="#4">Examples</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre class="language-matlab">sequence = quat2seq(in_quat, seq)
+</pre><h2>Input Arguments<a name="2"></a></h2><div><ul><li>in_quat -- input quaternions</li><li>seq -- Has to be one the following:</li></ul></div><pre>      'Euler'  -&gt; Rz * Rx * Rz
+      'Fick' -&gt; Rz * Ry * Rx
+      'nautical' -&gt; same as "Fick"
+      'Helmholtz' -&gt; Ry * Rz * Rx</pre><h2>Output Arguments<a name="3"></a></h2><div><ul><li>sequence -- corresponding angles [deg], same sequence as in the rotation matrices</li></ul></div><h2>Examples<a name="4"></a></h2><pre class="language-matlab">quat2seq([0,0,0.1])
+</pre><pre class="language-matlab">quaternions = [0,0,0.1; 0,0.2,0]
+quat2seq(quaternions, <span class="string">'nautical'</span>)
+quat2seq(quaternions, <span class="string">'Euler'</span>)
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% quat2seq
+%   This function takes a quaternion, and calculates the corresponding angles for sequenctial rotations.
+%% Syntax
+%   sequence = quat2seq(in_quat, seq)
+%
+%% Input Arguments
+% * in_quat REPLACE_WITH_DASH_DASH input quaternions
+% * seq REPLACE_WITH_DASH_DASH Has to be one the following:
+%        
+%        'Euler'  -> Rz * Rx * Rz
+%        'Fick' -> Rz * Ry * Rx
+%        'nautical' -> same as "Fick"
+%        'Helmholtz' -> Ry * Rz * Rx
+%
+%% Output Arguments
+% * sequence REPLACE_WITH_DASH_DASH corresponding angles [deg], same sequence as in the rotation matrices
+%
+%% Examples
+%   quat2seq([0,0,0.1])
+%
+%   quaternions = [0,0,0.1; 0,0.2,0]
+%   quat2seq(quaternions, 'nautical')
+%   quat2seq(quaternions, 'Euler')
+
+function sequence = quat2seq(in_quat, seq)
+
+[num_data, num_cols] = size(in_quat);
+
+% Check the input
+if num_cols~=3 & num_cols ~=4	% if "in_quat" contains 4 values, take only the "vector"
+    error([upper(mfilename) ':The quaternions in QUAT2SEQ need to have 3 or 4 elements!']);
+end
+
+quats = unit_q(in_quat);
+
+if strcmp(seq, 'Fick')
+    seq = 'nautical';
+end
+switch seq
+case 'Euler'
+        Rs = quat_convert(quats, 'rot_mat');
+        
+        beta = acos(Rs(:,9));
+        
+        % special handling for (beta == 0)
+        bz = (beta == 0);
+        
+        % there the gamma-values are set to zero, since alpha/gamma is degenerated
+        alpha = nan * ones(size(beta));
+        gamma = nan * ones(size(beta));
+        
+        alpha(bz) = asin(Rs(bz,2));
+        gamma(bz) = 0;
+        
+        alpha(~bz) = atan2(Rs(~bz,7), Rs(~bz,8));
+        gamma(~bz) = atan2(Rs(~bz,3), Rs(~bz,6));
+        
+        sequence = rad2deg([alpha, beta, gamma]);
+    
+case 'nautical'
+        R_zx = 2 * (quats(:,2).*quats(:,4) - quats(:,1).*quats(:,3));
+        R_yx = 2 * (quats(:,2).*quats(:,3) + quats(:,1).*quats(:,4));
+        R_zy = 2 * (quats(:,3).*quats(:,4) + quats(:,1).*quats(:,2));
+        
+        phi  = -asin(R_zx);
+        theta = asin(R_yx ./ cos(phi));
+        psi   = asin(R_zy ./ cos(phi));
+        
+        sequence = rad2deg([theta, phi, psi]);
+
+case 'Helmholtz'
+        R_yx = 2 * (quats(:,2).*quats(:,3) + quats(:,1).*quats(:,4));
+        R_zx = 2 * (quats(:,2).*quats(:,4) - quats(:,1).*quats(:,3));
+        R_yz = 2 * (quats(:,3).*quats(:,4) - quats(:,1).*quats(:,2));
+        
+        theta = asin(R_yx);
+        phi  = -asin(R_zx ./ cos(theta));
+        psi  = -asin(R_yz ./ cos(theta));
+        
+        sequence = rad2deg([phi, theta, psi]);
+    
+
+otherwise
+    error([' No option ' upper(new_type) ' in ' upper(mfilename)]);
+end
+
+end
+
+##### SOURCE END #####
+--></body></html>

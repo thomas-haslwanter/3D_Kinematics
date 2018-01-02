@@ -1,0 +1,170 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>quat_convert</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-08-21"><meta name="DC.source" content="quat_convert.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>quat_convert</h1><!--introduction--><p>Convert quaterion(s) into other representation of rotation(s)</p><p>Calculate the rotation matrix corresponding to the quaternion. If "inQuat" contains more than one quaternion, the matrix is flattened (to facilitate the work with rows of quaternions), and can be restored to matrix form by "reshaping" the resulting rows into a (3,3) shape.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Input Arguments</a></li><li><a href="#3">Output Arguments</a></li><li><a href="#4">Notes</a></li><li><a href="#5">Examples</a></li><li><a href="#7">Check the input</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre>  converted = quat_convert(in_quat, new_type)</pre><h2>Input Arguments<a name="2"></a></h2><div><ul><li>inQuat -- Quaternions or quaternion vectors. (Quaternion vectors are expanded to unit quaternions.)</li><li>to -- Output type. Has to be "rot_mat" or "Gibbs"</li></ul></div><pre>   'rot_mat'  -&gt;  rotation matrix
+   'Gibbs'    -&gt; Gibbs vector</pre><h2>Output Arguments<a name="3"></a></h2><div><ul><li>converted -- Corresponding converted output</li></ul></div><h2>Notes<a name="4"></a></h2><p><img src="quat_convert_eq06216504874235683730.png" alt="$${\bf{R}} = \left( {\begin{array}{*{20}{c}}&#xA;    {q_0^2 + q_1^2 - q_2^2 - q_3^2}&{2({q_1}{q_2} - {q_0}{q_3})}&{2({q_1}{q_3} + {q_0}{q_2})}\\&#xA;    {2({q_1}{q_2} + {q_0}{q_3})}&{q_0^2 - q_1^2 + q_2^2 -&#xA;    q_3^2}&{2({q_2}{q_3} - {q_0}{q_1})}\\ {2({q_1}{q_3} -&#xA;    {q_0}{q_2})}&{2({q_2}{q_3} + {q_0}{q_1})}&{q_0^2 - q_1^2 - q_2^2 + q_3^2} \\ \end{array}} \right)$$"></p><p>More info under <a href="http://en.wikipedia.org/wiki/Quaternion">http://en.wikipedia.org/wiki/Quaternion</a></p><h2>Examples<a name="5"></a></h2><pre>  r = quat_convert([0, 0, 0.1], 'rot_mat')
+  reshape(r, 3,3)</pre><h2>Check the input<a name="7"></a></h2><pre class="codeoutput">r =
+    0.9800   -0.1990         0
+    0.1990    0.9800         0
+         0         0    1.0000
+ans =
+    0.9800   -0.1990         0
+    0.1990    0.9800         0
+         0         0    1.0000
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% quat_convert
+% Convert quaterion(s) into other representation of rotation(s)
+%
+% Calculate the rotation matrix corresponding to the quaternion. If
+% "inQuat" contains more than one quaternion, the matrix is flattened (to
+% facilitate the work with rows of quaternions), and can be restored to
+% matrix form by "reshaping" the resulting rows into a (3,3) shape.
+%
+%% Syntax
+%    converted = quat_convert(in_quat, new_type)
+%
+%% Input Arguments
+% * inQuat REPLACE_WITH_DASH_DASH Quaternions or quaternion vectors. (Quaternion vectors are
+% expanded to unit quaternions.)
+% * to REPLACE_WITH_DASH_DASH Output type. Has to be "rot_mat" or "Gibbs"
+%
+%     'rot_mat'  ->  rotation matrix
+%     'Gibbs'    -> Gibbs vector
+% 
+%% Output Arguments
+% * converted REPLACE_WITH_DASH_DASH Corresponding converted output
+% 
+%% Notes
+% $${\bf{R}} = \left( {\begin{array}{*{20}{c}}
+%     {q_0^2 + q_1^2 - q_2^2 - q_3^2}&{2({q_1}{q_2} - {q_0}{q_3})}&{2({q_1}{q_3} + {q_0}{q_2})}\\
+%     {2({q_1}{q_2} + {q_0}{q_3})}&{q_0^2 - q_1^2 + q_2^2 -
+%     q_3^2}&{2({q_2}{q_3} - {q_0}{q_1})}\\ {2({q_1}{q_3} -
+%     {q_0}{q_2})}&{2({q_2}{q_3} + {q_0}{q_1})}&{q_0^2 - q_1^2 - q_2^2 + q_3^2} \\ \end{array}} \right)$$
+%
+% More info under <http://en.wikipedia.org/wiki/Quaternion>
+% 
+%% Examples
+%    r = quat_convert([0, 0, 0.1], 'rot_mat')
+%    reshape(r, 3,3)
+%
+
+function Result = quat_convert(in_quat, new_type)
+
+[num_data, num_cols] = size(in_quat);
+
+%% Check the input
+if num_cols~=3 & num_cols ~=4	% if "in_quat" contains 4 values, take only the "vector"
+    error([upper(mfilename) ':The quaternions in QUAT2X need to have 3 or 4 elements!']);
+end
+
+% Data conversion
+switch new_type
+    
+    case 'Gibbs'
+        q_length = vector_length(in_quat);
+        q_rho = 2*asin(q_length);		% the size of the rotation
+        
+        in_quat = q_vector(in_quat);
+        % For rotations by pi (to avoid division by zero):
+        gibbs = nans(1, size(in_quat, 1));
+        length_one = find(q_length == 1);
+        gibbs(length_one) = 0;
+        
+        % For the rest....
+        not_length_one = find(q_length ~= 1);
+        
+        gibbs(not_length_one) = 1./ sqrt( 1-q_length(not_length_one).^2 );
+        Result = repmat(gibbs,1,3) .* in_quat;
+        
+    case 'rot_mat'
+        R = zeros(9, num_data);
+        q0 = q_scalar(in_quat)';
+        q = q_vector(in_quat)';
+        
+        R(1,:) = q0.^2 + q(1,:).^2 - q(2,:).^2 - q(3,:).^2;
+        R(2,:) = 2 * (q(1,:).*q(2,:) + q0.*q(3,:));
+        R(3,:) = 2 * (q(1,:).*q(3,:) - q0.*q(2,:));
+        R(4,:) = 2 * (q(1,:).*q(2,:) - q0.*q(3,:));
+        R(5,:) = q0.^2 - q(1,:).^2 + q(2,:).^2 - q(3,:).^2;
+        R(6,:) = 2 * (q(2,:).*q(3,:) + q0.*q(1,:));
+        R(7,:) = 2 * (q(1,:).*q(3,:) + q0.*q(2,:));
+        R(8,:) = 2 * (q(2,:).*q(3,:) - q0.*q(1,:));
+        R(9,:) = q0.^2 - q(1,:).^2 - q(2,:).^2 + q(3,:).^2;
+        
+        if num_data == 1
+            Result = reshape(R, 3, 3);
+        else
+            Result = R';
+        end
+    otherwise
+        error([' No option ' upper(new_type) ' in ' upper(mfilename)]);
+end
+
+##### SOURCE END #####
+--></body></html>

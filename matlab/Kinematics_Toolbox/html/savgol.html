@@ -1,0 +1,309 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>savgol</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-08-21"><meta name="DC.source" content="savgol.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>savgol</h1><!--introduction--><p>Savitzky-Golay filter, for data smoothing and derivatives</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Input Arguments</a></li><li><a href="#3">Output Arguments</a></li><li><a href="#4">Notes</a></li><li><a href="#5">Literature</a></li><li><a href="#6">Examples</a></li><li><a href="#7">See Also</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre>   y=savgol(x, pol_degree, win_size, deriv, rate)</pre><h2>Input Arguments<a name="2"></a></h2><div><ul><li>x -- Input data (vector or column matrix)</li><li>pol_degree -- Degree of polynomial</li><li>win_size -- Window-size (has to be uneven!)</li><li>deriv -- Order of derivative ("0" for smoothing, "1" for first derivative, etc.). Default is "0"</li><li>rate -- Sample rate [Hz]. Default is "1"</li></ul></div><h2>Output Arguments<a name="3"></a></h2><div><ul><li>y -- Filtered data</li></ul></div><h2>Notes<a name="4"></a></h2><pre>"Cutoff-frequencies":</pre><p>for smoothing (deriv=0), the frequency where the amplitude is reduced by 10% is approximately given by</p><pre>  f_cutoff = sampling_rate / (1.5 * look)</pre><p>for the first derivative (deriv=1), the frequency where the amplitude is reduced by 10% is approximately given by</p><pre>  f_cutoff = sampling_rate / (4 * look)</pre><p>Coefficients:</p><pre>  C(i,k) = i! / delta_sample * SUM(j=0,..,n) { s_inv[i][j] * k^j }</pre><p>with i = 0,.., n (= degree of polinomial fitted)</p><p>k = -m,..,m (= number of points taken for the fit)</p><p><img src="savgol_eq16749720239198365787.png" alt="$$S(i,j) = \sum_{k=-m}^{m} k^{i+j}$$"></p><p>with i,j = 0,..,n</p><h2>Literature<a name="5"></a></h2><div><ul><li>Siegmund Brandt, Datenanalyse, pp 435</li><li>Press et al., Numerical Recipes, 2nd ed, pp 650</li><li>Savitzky and Golay: Analytical Chemistry, Vol.36, No.8, Jul 64, 1627 ff</li></ul></div><h2>Examples<a name="6"></a></h2><pre>  smoothed = SAVGOL(x, 3, 7, 0);  % smooth data, with a cubic polynomial and a window-size of 7
+  acc = SAVGOL(pos, 3, 11, 2, 10) % calculate the second derivative of 10-Hz data</pre><h2>See Also<a name="7"></a></h2><p>sgolay, sgolayfilt, filter</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% savgol
+% Savitzky-Golay filter, for data smoothing and derivatives
+%
+%% Syntax
+%     y=savgol(x, pol_degree, win_size, deriv, rate)
+%
+%% Input Arguments
+% * x REPLACE_WITH_DASH_DASH Input data (vector or column matrix)
+% * pol_degree REPLACE_WITH_DASH_DASH Degree of polynomial
+% * win_size REPLACE_WITH_DASH_DASH Window-size (has to be uneven!)
+% * deriv REPLACE_WITH_DASH_DASH Order of derivative ("0" for smoothing, "1" for first
+% derivative, etc.). Default is "0"
+% * rate REPLACE_WITH_DASH_DASH Sample rate [Hz]. Default is "1"
+%
+%% Output Arguments
+% * y REPLACE_WITH_DASH_DASH Filtered data 
+% 
+%% Notes
+%  "Cutoff-frequencies":
+%
+% for smoothing (deriv=0), the frequency where
+% the amplitude is reduced by 10% is approximately given by
+%
+%    f_cutoff = sampling_rate / (1.5 * look)
+%
+% for the first derivative (deriv=1), the frequency where 
+% the amplitude is reduced by 10% is approximately given by
+%
+%    f_cutoff = sampling_rate / (4 * look)
+%	
+% Coefficients:
+%
+%    C(i,k) = i! / delta_sample * SUM(j=0,..,n) { s_inv[i][j] * k^j }
+%
+% with i = 0,.., n (= degree of polinomial fitted)
+%
+% k = -m,..,m (= number of points taken for the fit)
+%
+% $$S(i,j) = \sum_{k=-m}^{m} k^{i+j}$$
+%
+% with i,j = 0,..,n
+%
+%
+%% Literature
+%
+% * Siegmund Brandt, Datenanalyse, pp 435
+% * Press et al., Numerical Recipes, 2nd ed, pp 650
+% * Savitzky and Golay: Analytical Chemistry, Vol.36, No.8, Jul 64, 1627 ff
+%
+%% Examples
+%    smoothed = SAVGOL(x, 3, 7, 0);  % smooth data, with a cubic polynomial and a window-size of 7
+%    acc = SAVGOL(pos, 3, 11, 2, 10) % calculate the second derivative of 10-Hz data 
+%
+%% See Also
+% sgolay, sgolayfilt, filter
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+% author: ThH
+% date: Sept-2016
+% ver: 3.0
+
+function y=savgol(x, pol_degree, win_size, deriv, rate)
+
+% Set the default values if necessary:
+if (nargin==1)
+	pol_degree=2
+	win_size=3
+	deriv=0
+	rate=1;
+elseif (nargin==2)
+	win_size=3
+	deriv=0
+	rate=1;
+elseif (nargin==3)
+	deriv=0
+	rate=1;
+elseif (nargin==4)
+	rate=1;
+	if deriv > 0
+		disp(['Default sampling rate: ' num2str(rate)]);
+	end
+end
+
+% Check the input format:
+[x, num_row, num_col] = check_input(x, win_size, pol_degree, deriv);
+look = (win_size-1)/2;
+
+% Construct Vandermonde matrix:
+[a, pa, p] = get_vandermonde(win_size, pol_degree, look, deriv, rate);
+
+% Get the coefficients for the fits at the beginning and at the end of the data:
+coefs = (0:pol_degree).^sign(deriv);
+coef_mat = zeros(pol_degree+1);
+row = 1;
+for i=deriv+1:pol_degree+1
+	coef = coefs(i);
+	for j=1:(deriv-1)
+		coef = coef * (coefs(i)-j);
+	end
+	coef_mat(row,row+deriv) = coef;
+	row = row + 1;
+end;
+coef_mat = coef_mat * rate^deriv;
+
+% Add the first and the last point "look"-times, and handle NaNs
+[x_calc, nan_index] = prepare_data(x, look);
+
+% filter the data:
+% for the convolution, the filter coefficients have to be inverted
+p = p(length(p):-1:1);
+y_filt = [];
+for i=1:num_col
+	y_filt = [y_filt; filter(p,1,x_calc(i,:))];	% watch out, the data are transposed!
+end
+
+% chop away intermediate data ...
+y = y_filt(:, win_size:win_size-1+num_row)';
+
+% ...and adjust the first and the last few data:
+
+% filtering for the first few datapoints
+y(1:look,:)=a(1:look,:)*coef_mat*pa*x(1:win_size,:);
+
+% % smoothing for the inner interval points
+% for i=look+1:n-look
+%   y(i,:)=p*x(i-look:i+look,:);
+% end
+
+% filtering for the last few datapoints
+y(num_row-look+1:num_row,:)=a(look+2:win_size,:)*coef_mat*pa*x(num_row-win_size+1:num_row,:);
+
+% Put back the NaNs where they were:
+if ~isempty(nan_index)
+	y(nan_index) = NaN;
+end   
+% ============================= THE END =======================================
+
+% Check the form of the input data
+function [x_out, num_row, num_col] = check_input(x_in, win_size, pol_degree, deriv)
+% Determine the size of the data:
+[num_row, num_col]=size(x_in);
+
+% If necessary, bring them in column form:
+if num_row < num_col 
+	x_out = x_in';
+	[num_row,num_col]=size(x_out);
+else
+	x_out = x_in;
+end
+clear x_in;
+
+% Check input arguments:
+if (win_size>num_row) 
+	disp('Not enough data points!');
+	disp('Unless you make "win_size" smaller, the output is empty.');
+	y=[];
+	return;
+end
+if (win_size-1<pol_degree)
+	disp('The "pol_degree" of the polynomial is too high!');
+	disp('Unless you make the "pol_degree" smaller, or increase "look", the output is empty.');
+	y=[];
+	return;
+end
+if (pol_degree<=deriv)	% The "=" is only to avoid non-sensible output. The
+	% code would not crash.
+	disp('The "deriv" of the polynomial is too high!');
+	disp('Unless you make the "deriv" smaller, or increase "pol_degree", the output is empty.');
+	y=[];
+	return;
+end
+
+if ~mod(win_size, 2)
+	disp('WIN_SIZE has to be odd!');
+	return;
+end
+
+% ===================================================================================================
+function [a, pa, p] = get_vandermonde(win_size, pol_degree, look, deriv, rate)
+a   = zeros(win_size,pol_degree+1);
+for ii=1:win_size
+	for jj=1:pol_degree+1
+		a(ii,jj) = (ii-1-look)^(jj-1);
+	end
+end
+
+pa = pinv(a);
+p = prod(1:deriv) * rate^deriv * pa(deriv+1,:);  % Savitzky-Golay Coefficients
+% ===================================================================================================
+function [x_ext, nan_index] = prepare_data(x, look)
+
+[num_row, num_col] = size(x);
+
+% Start and End-appendices:
+x_start = zeros(num_col, look);
+x_end   = zeros(num_col, look);
+
+% Handle NaNs: REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+if any(isnan(x))
+	no_num.index = isnan(x);
+	no_num.start = find(diff(no_num.index)== 1);
+	no_num.stop  = find(diff(no_num.index)==-1)+1;
+
+	if no_num.start(1) < no_num.stop(1)
+		no_num.correct_start = 0;
+	else
+		no_num.correct_start = 1;
+	end
+
+	if no_num.stop(end) > no_num.start(end)
+		no_num.correct_stop = 0;
+	else
+		no_num.correct_stop = 1;
+	end
+
+	stop_length = length(no_num.stop)-no_num.correct_start;
+	for ii = 1:stop_length
+		start_ind = no_num.start(ii);
+		stop_ind = no_num.stop(ii+no_num.correct_start);
+		x(start_ind:stop_ind) = linspace(x(start_ind), x(stop_ind), stop_ind-start_ind+1)';
+	end
+	% Pass back the required variables
+	nan_index = no_num.index;
+else
+	nan_index = [];
+end
+% For start and end: REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+for ii = 1:look
+	x_start(ii) = x(1);
+	x_end(ii) = x(num_row);
+end
+
+x_ext = [x_start x' x_end];
+
+% ===================================================================================================
+
+##### SOURCE END #####
+--></body></html>

@@ -1,0 +1,205 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>sequence</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-08-21"><meta name="DC.source" content="sequence.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>sequence</h1><!--introduction--><p>Takes a rotation matrix, and calculates the corresponding angles for sequential rotations.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Input Arguments</a></li><li><a href="#3">Output Arguments</a></li><li><a href="#4">Notes</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre>  angles = sequence(rot_mat, to)</pre><h2>Input Arguments<a name="2"></a></h2><div><ul><li>rot_mat -- Input rotation matrix [3x3], or matrices [Nx9]</li><li>to -- Output format. Has to be one of the following: Euler / Fick / aero / Helmholtz</li></ul></div><pre>   Euler &lt;-&gt; Rz * Rx * Rz
+   Fick &lt;-&gt; Rz * Ry * Rx
+   aero &lt;-&gt; same as "Fick"
+   Helmholtz &lt;-&gt; Ry * Rz * Rx</pre><h2>Output Arguments<a name="3"></a></h2><div><ul><li>angles --- corresponding 3 rotation angles [alpha, beta, gamma]</li></ul></div><pre>  alpha : first rotation(right-most matrix)
+  beta : second rotation
+  gamma : third rotation (left-most matrix)</pre><h2>Notes<a name="4"></a></h2><p>The following formulas are used:</p><p><b>Euler</b></p><p><img src="sequence_eq07923843187977930259.png" alt="$$\beta   = -arcsin(\sqrt{ R_{xz}^2 + R_{yz}^2 }) * sign(R_{yz})$$"></p><p><img src="sequence_eq01262858145421071269.png" alt="$$\gamma = arcsin(\frac{R_{xz}}{sin\beta})$$"></p><p><img src="sequence_eq06800672197145798155.png" alt="$$\alpha   = arcsin(\frac{R_{zx}}{sin\beta})$$"></p><p><b>aero / Fick</b></p><p><img src="sequence_eq10697065130712166942.png" alt="$$\theta   = arctan(\frac{R_{yx}}{R_{xx}})$$"></p><p><img src="sequence_eq16855457071597407087.png" alt="$$\phi = arcsin(R_{zx})$$"></p><p><img src="sequence_eq05686870785109221905.png" alt="$$\psi   = arctan(\frac{R_{zy}}{R_{zz}})$$"></p><p>Note that it is assumed that psi &lt; pi !</p><p><b>Helmholtz</b></p><p><img src="sequence_eq16716009696925565936.png" alt="$$\theta = arcsin(R_{yx})$$"></p><p><img src="sequence_eq10430498763008244523.png" alt="$$\phi = -arcsin(\frac{R_{zx}}{cos\theta})$$"></p><p><img src="sequence_eq14049032384219720590.png" alt="$$\psi = -arcsin(\frac{R_{yz}}{cos\theta})$$"></p><p>Note that it is assumed that psi &lt; pi</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% sequence
+% Takes a rotation matrix, and calculates the corresponding angles for sequential rotations.
+%
+%% Syntax
+%    angles = sequence(rot_mat, to) 
+%
+%% Input Arguments
+% * rot_mat REPLACE_WITH_DASH_DASH Input rotation matrix [3x3], or matrices [Nx9]
+% * to REPLACE_WITH_DASH_DASH Output format. Has to be one of the following:
+% Euler / Fick / aero / Helmholtz
+%
+%     Euler <-> Rz * Rx * Rz
+%     Fick <-> Rz * Ry * Rx
+%     aero <-> same as "Fick"
+%     Helmholtz <-> Ry * Rz * Rx
+%
+%% Output Arguments
+% * angles REPLACE_WITH_DASH_DASH- corresponding 3 rotation angles [alpha, beta, gamma]
+% 
+%    alpha : first rotation(right-most matrix)
+%    beta : second rotation
+%    gamma : third rotation (left-most matrix)
+%
+%% Notes
+% The following formulas are used:
+%
+% *Euler*
+%
+% $$\beta   = -arcsin(\sqrt{ R_{xz}^2 + R_{yz}^2 }) * sign(R_{yz})$$
+%
+% $$\gamma = arcsin(\frac{R_{xz}}{sin\beta})$$
+%
+% $$\alpha   = arcsin(\frac{R_{zx}}{sin\beta})$$
+%
+% *aero / Fick*
+%
+% $$\theta   = arctan(\frac{R_{yx}}{R_{xx}})$$
+%
+% $$\phi = arcsin(R_{zx})$$
+%
+% $$\psi   = arctan(\frac{R_{zy}}{R_{zz}})$$
+%
+% Note that it is assumed that psi < pi !
+%
+% *Helmholtz*
+%
+% $$\theta = arcsin(R_{yx})$$
+%
+% $$\phi = -arcsin(\frac{R_{zx}}{cos\theta})$$
+%
+% $$\psi = -arcsin(\frac{R_{yz}}{cos\theta})$$
+%
+%
+% Note that it is assumed that psi < pi
+%
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+% ver:      0.1
+% date:     Aug-2017
+% author:   ThH
+
+function angles = sequence(rot_mat, to)
+
+% Set the default
+if nargin == 1
+    to = 'aero'
+end
+
+% "Fick" is the same as "aero"
+to = strrep(to, 'Fick', 'aero');
+
+% for easier readability
+R = rot_mat;
+
+if ~prod(size(rot_mat)==[3,3])
+    R = reshape(rot_mat', 3, 3, []);
+end
+
+switch to
+    case 'aero'        
+        phi =  -asin(R(3,1,:));
+        psi =   asin(R(3,2,:) ./ cos(phi) );
+        theta = asin(R(2,1,:) ./ cos(phi) );
+        
+        angles = reshape([psi, phi, theta], 3, [])';
+        
+    case 'Helmholtz'        
+        theta = asin(R(2,1,:));
+        psi =  -asin(R(2,3,:) ./ cos(theta) );
+        phi = asin(R(3,1,:) ./ cos(theta) );
+        
+        angles = reshape([psi, theta, phi], 3, [])';
+        
+    case 'Euler'
+        epsilon = 1e-6;
+        beta = - asin(sqrt(R(1,3,:).^2 + R(2,3,:).^2)) .* sign(R(2,3,:))
+        small_indices =  beta < epsilon;
+        
+        % Assign memory for alpha and gamma
+        alpha = nan(size(beta));
+        gamma = nan(size(beta));
+        
+        % For small beta
+        beta(small_indices) = 0;
+        gamma(small_indices) = 0;
+        alpha(small_indices) = asin(R(2,1,small_indices));
+        
+        % for the rest
+        gamma(~small_indices) = asin( R(1,3,~small_indices)./sin(beta) );
+        alpha(~small_indices) = asin( R(3,1,~small_indices)./sin(beta) );
+        
+          % That equation seems to be wrong
+%         beta = asin(R(3,1,:));
+%         alpha = asin(R(3,2,:) ./ cos(beta) );
+%         gamma = asin(R(2,1,:) ./ cos(beta) );
+      
+        angles = reshape([alpha, beta, gamma], 3, [])';
+        
+    otherwise
+        error([upper(mfilename) ': Sorry, currently only the following options'
+            'are supported:\n',
+            'aero [default]\n',
+            'Fick\n',
+            'Helmholtz\n',
+            'Euler\n'])
+end
+
+
+##### SOURCE END #####
+--></body></html>

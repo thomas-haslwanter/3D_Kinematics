@@ -1,0 +1,160 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>target2orient</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-01-02"><meta name="DC.source" content="target2orient.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>target2orient</h1><!--introduction--><pre class="language-matlab">Converts <span class="string">a</span> <span class="string">target</span> <span class="string">vector</span> <span class="string">into</span> <span class="string">a</span> <span class="string">corresponding</span> <span class="string">orientation.</span>
+Useful <span class="string">for</span> <span class="string">targeting</span> <span class="string">devices</span>, such <span class="string">as</span> <span class="string">eyes</span>, cameras, or <span class="string">missile</span> <span class="string">trackers.</span>
+Based <span class="string">on</span> <span class="string">the</span> <span class="string">assumption</span>, that <span class="string">in</span> <span class="string">the</span> <span class="string">reference</span> <span class="string">orientation</span>, the <span class="string">targeting</span>
+device <span class="string">points</span> <span class="string">forward.</span>
+</pre><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Input Arguments</a></li><li><a href="#3">Output Arguments</a></li><li><a href="#4">Examples</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre>orientation = target2orient(target, orient_type)</pre><h2>Input Arguments<a name="2"></a></h2><div><ul><li>target -- Input vector</li><li>orient_type -- Has to be one the following:</li></ul></div><pre>     'Fick' -&gt; Rz * Ry
+     'nautical' -&gt; same as "Fick"
+     'Helmholtz' -&gt; Ry * Rz
+     'quat' -&gt; quaternion</pre><h2>Output Arguments<a name="3"></a></h2><div><ul><li>orientation -- Corresponding orientation    For rotation matrices, same sequence as the matrices [deg].    For quaternions, the quaternion vector.</li></ul></div><pre>  Note that the last column of the sequence angles, and the first column
+  of the quaterion, will always be zero, because a rotation about
+  the line-of-sight has no effect.</pre><h2>Examples<a name="4"></a></h2><pre class="language-matlab">a = [3,3,0];
+b = [5., 0, 5];
+target2orient(a, <span class="string">'quat'</span>)
+target2orient([a,b])
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% target2orient
+%   Converts a target vector into a corresponding orientation.
+%   Useful for targeting devices, such as eyes, cameras, or missile trackers.
+%   Based on the assumption, that in the reference orientation, the targeting
+%   device points forward.
+%
+%% Syntax
+%  orientation = target2orient(target, orient_type)
+%
+%% Input Arguments
+% * target REPLACE_WITH_DASH_DASH Input vector
+% * orient_type REPLACE_WITH_DASH_DASH Has to be one the following:
+%        
+%       'Fick' -> Rz * Ry
+%       'nautical' -> same as "Fick"
+%       'Helmholtz' -> Ry * Rz
+%       'quat' -> quaternion
+%
+%% Output Arguments
+% * orientation REPLACE_WITH_DASH_DASH Corresponding orientation
+%    For rotation matrices, same sequence as the matrices [deg].
+%    For quaternions, the quaternion vector.
+%    
+%    Note that the last column of the sequence angles, and the first column
+%    of the quaterion, will always be zero, because a rotation about
+%    the line-of-sight has no effect.
+%
+%% Examples
+%   a = [3,3,0];
+%   b = [5., 0, 5];
+%   target2orient(a, 'quat')
+%   target2orient([a,b])
+    
+
+function orientation = target2orient(target, orient_type)
+
+[num_data, num_cols] = size(target);
+
+% Check the input
+if num_cols~=3 
+    error([upper(mfilename) ':The input target in ORIENT2QAT must have 3 elements!']);
+end
+
+if strcmp(orient_type, 'Fick')
+    orient_type = 'nautical';
+end
+
+switch orient_type
+    case 'quat'
+        orientation = q_shortest_rotation([1,0,0], target);
+        
+    case 'nautical'
+        n = normalize(target);
+        
+        theta = atan2(n(:,2), n(:,1));
+        phi = -asin(n(:,3));
+        
+        orientation =  [theta, phi, zeros(size(theta))];
+        orientation = rad2deg(orientation);
+
+    case 'Helmholtz'
+        n = normalize(target);
+        
+        phi = -atan2(n(:,3), n(:,1));
+        theta = asin(n(:,2));
+        
+        orientation =  [phi, theta, zeros(size(theta))];
+        orientation = rad2deg(orientation);
+
+    otherwise
+        error([' No option ' upper(orient_type) ' in ' upper(mfilename)]);
+end
+
+end
+
+##### SOURCE END #####
+--></body></html>

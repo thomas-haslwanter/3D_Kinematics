@@ -17,5 +17,5 @@ All the Python programs that go with the book:
 - Solutions for the Exercises in the book
 
 ## Errata
-The file [Errata.txt](Errata.pdf) will contains the a list of mistakes in the manuscript, and
+The file [Errata.txt](Errata.pdf) will contain the a list of mistakes in the manuscript, and
 the corresponding corrections.

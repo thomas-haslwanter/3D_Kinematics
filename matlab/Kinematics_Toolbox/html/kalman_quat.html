@@ -1,0 +1,203 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>kalman_quat</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-08-21"><meta name="DC.source" content="kalman_quat.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>kalman_quat</h1><!--introduction--><p>Calclulate the orientation from IMU magnetometer data using a Kalman Filter.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Input Arguments</a></li><li><a href="#3">Output Arguments</a></li><li><a href="#4">Notes</a></li><li><a href="#6">Set parameters for Kalman Filter</a></li><li><a href="#7">Calculation of orientation for every time step</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre>  q_out = kalman_quat(rate, acc, omega, mag)</pre><h2>Input Arguments<a name="2"></a></h2><div><ul><li>rate -- Sample rate [Hz]</li><li>acc -- 3D Linear acceleration [m/sec^2]</li><li>omega -- 3D angular velocity [rad/sec]</li><li>mag -- 3D magnetic field orientation</li></ul></div><h2>Output Arguments<a name="3"></a></h2><div><ul><li>q_out -- Unit quaternion, describing the orientation relativ to the coordinate        system spanned by the local magnetic field, and gravity</li></ul></div><h2>Notes<a name="4"></a></h2><p>Based on "Design, Implementation, and Experimental Results of a Quaternion-Based Kalman Filter for Human Body Motion Tracking" Yun, X. and Bachman, E.R., IEEE TRANSACTIONS ON ROBOTICS, VOL. 22, 1216-1227 (2006)</p><h2>Set parameters for Kalman Filter<a name="6"></a></h2><h2>Calculation of orientation for every time step<a name="7"></a></h2><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% kalman_quat
+% Calclulate the orientation from IMU magnetometer data using a Kalman Filter.
+% 
+%% Syntax
+%    q_out = kalman_quat(rate, acc, omega, mag) 
+%
+%% Input Arguments
+% * rate REPLACE_WITH_DASH_DASH Sample rate [Hz]	
+% * acc REPLACE_WITH_DASH_DASH 3D Linear acceleration [m/sec^2]
+% * omega REPLACE_WITH_DASH_DASH 3D angular velocity [rad/sec]
+% * mag REPLACE_WITH_DASH_DASH 3D magnetic field orientation
+% 
+%% Output Arguments
+% * q_out REPLACE_WITH_DASH_DASH Unit quaternion, describing the orientation relativ to the coordinate
+%        system spanned by the local magnetic field, and gravity
+% 
+%% Notes
+% Based on "Design, Implementation, and Experimental Results of a Quaternion-Based
+% Kalman Filter for Human Body Motion Tracking" Yun, X. and Bachman, E.R., IEEE
+% TRANSACTIONS ON ROBOTICS, VOL. 22, 1216-1227 (2006)
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+% ver:      0.1
+% date:     Aug-2017
+% author:   ThH
+
+function q_out = kalman_quat(rate, acc, omega, mag)
+
+
+% Define constants
+g_def = 9.80665;
+
+% Assign relevant measurement data
+angvelIn = omega;
+accelIn = acc;
+magfieldIn = mag;
+
+data_len = length(accelIn);
+time = (1:data_len)/rate;
+
+%% Set parameters for Kalman Filter
+tstep = 1/rate;
+
+tau = [0.5 0.5 0.5];
+% tau = [0.5 0.5 0.5];      %value [sec] used in relevant paper (Yun)
+
+% Initialize state vector x_k and measurement vector z_k
+z_k = zeros(7,1);
+z_k_pre = zeros(7,1);
+x_k = zeros(7,1);
+
+% Initialize error covariance matrix P_k
+P_k = eye(7);
+
+% Initialize discrete state transition matrix Phi_k
+Phi_k = zeros(7);
+for ii = 1:3
+    Phi_k(ii,ii) = exp(-tstep/tau(ii));
+end
+
+% Identity matrix H_k
+H_k = eye(7);
+
+% Initialize process noise matrix Q_k
+D = 0.0001*[0.4 0.4 0.4];
+% D = [0.4 0.4 0.4];	%value [rad²/sec²] used in relevant paper (Yun)
+
+Q_k = zeros(7);
+for ii = 1:3
+    Q_k(ii,ii) = (D(ii)/(2*tau(ii)))*(1-exp(-2*tstep/tau(ii)));
+end
+
+% Evaluate measurement noise covariance matrix R_k
+r_angvel = 0.01;
+% r_angvel = 0.01;      %value [rad²/sec²] used in relevant paper (Yun)
+
+r_quats = 0.0001;
+% r_quats = 0.0001;     %value used in relevant paper (Yun)
+
+R_k = zeros(7);
+for ii = 1:7
+    if ii<=3
+        R_k(ii,ii) = r_angvel;
+    else
+        R_k(ii,ii) = r_quats;
+    end
+end
+
+% Assign memory
+q_out = nan(data_len, 4);
+
+%% Calculation of orientation for every time step
+for idx1 = 1:data_len
+	accelVec = accelIn(idx1,:);
+	magVec = magfieldIn(idx1,:);
+    angvelVec = angvelIn(idx1,:);
+    z_k_pre = z_k;
+    % Evaluate quaternion based on acceleration and magnetic field data
+    accelVec_n = accelVec/norm(accelVec);
+	magVec_hor = magVec-accelVec_n*dot(accelVec_n,magVec);
+	magVec_n = magVec_hor/norm(magVec_hor);
+    basisVectors = [magVec_n' cross(accelVec_n, magVec_n)' accelVec_n'];
+% 	RotBasis{1} = basisVectors;
+	quatRef = -rotmat_convert(basisVectors,'quat');
+	quatRef0 = sqrt(1-(quatRef(1)^2+quatRef(2)^2+quatRef(3)^2));
+	quatRef = [quatRef0 quatRef];
+    % Update measurement vector z_k
+    z_k(1:3) = angvelVec;
+    z_k(4:7) = quatRef;
+    % Calculate Kalman Gain
+    K_k = P_k*H_k'*(H_k*P_k*H_k'+R_k)^-1;
+    % Update state vector x_k
+    x_k = x_k+K_k*(z_k-z_k_pre);
+    % Evaluate discrete state transition matrix Phi_k
+    Phi_k(4,:) = [-x_k(5)*tstep/2 -x_k(6)*tstep/2 -x_k(7)*tstep/2 1 -x_k(1)*tstep/2 -x_k(2)*tstep/2 -x_k(3)*tstep/2];
+    Phi_k(5,:) = [x_k(4)*tstep/2 -x_k(7)*tstep/2 x_k(6)*tstep/2 x_k(1)*tstep/2 1 x_k(3)*tstep/2 -x_k(2)*tstep/2];
+    Phi_k(6,:) = [x_k(7)*tstep/2 x_k(4)*tstep/2 -x_k(5)*tstep/2 x_k(2)*tstep/2 -x_k(3)*tstep/2 1 x_k(1)*tstep/2];
+    Phi_k(7,:) = [-x_k(6)*tstep/2 x_k(5)*tstep/2 x_k(4)*tstep/2 x_k(3)*tstep/2 x_k(2)*tstep/2 -x_k(1)*tstep/2 1];
+    % Update error covariance matrix
+    P_k = (eye(7)-K_k*H_k)*P_k;
+    % Projection of state quaternions
+    x_k(4:7) = x_k(4:7)'+q_mult(0.5*x_k(4:7)',[0 x_k(1:3)']);
+    x_k(4:7) = x_k(4:7)/norm(x_k(4:7));c
+    x_k(1:3) = zeros(3,1);
+	x_k(1:3) = tstep*(-x_k(1:3)+z_k(1:3));
+    q_out(idx1,:) = x_k(4:7);
+    % Projection of error covariance matrix
+    P_k = Phi_k*P_k*Phi_k'+Q_k;
+end
+
+
+##### SOURCE END #####
+--></body></html>

@@ -1,0 +1,137 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>rotate_vector</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-08-21"><meta name="DC.source" content="rotate_vector.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>rotate_vector</h1><!--introduction--><p>Rotates a given column of 3D vectors by a (fixed or variable) quaternion</p><p><img src="rotate_vector_eq04849713677811961069.png" alt="$$\vec{v}_{out} = q_{rot} * \vec{v}_{in} * q_{rot}^{-1}$$"></p><p>where "*" is a quaternion multiplication, and "^(-1)" indicates the inverse.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Syntax</a></li><li><a href="#2">Input Arguments</a></li><li><a href="#3">Output Arguments</a></li><li><a href="#4">Notes</a></li></ul></div><h2>Syntax<a name="1"></a></h2><pre>  vec_out = rotate_vector(vec_in, q_rot)</pre><h2>Input Arguments<a name="2"></a></h2><div><ul><li>vec_in -- 3D vector</li><li>q_rot -- Quaternion describing the rotation</li></ul></div><h2>Output Arguments<a name="3"></a></h2><div><ul><li>vec_out -- Rotated vector</li></ul></div><h2>Notes<a name="4"></a></h2><p>Either input can be a simple vector, or a matrix.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% rotate_vector
+% Rotates a given column of 3D vectors by a (fixed or variable) quaternion
+%
+% $$\vec{v}_{out} = q_{rot} * \vec{v}_{in} * q_{rot}^{-1}$$
+%
+% where "*" is a quaternion multiplication, and "^(-1)" indicates the
+% inverse.
+%
+%% Syntax
+%    vec_out = rotate_vector(vec_in, q_rot)
+%
+%% Input Arguments
+% * vec_in REPLACE_WITH_DASH_DASH 3D vector
+% * q_rot REPLACE_WITH_DASH_DASH Quaternion describing the rotation
+% 
+%% Output Arguments
+% * vec_out REPLACE_WITH_DASH_DASH Rotated vector
+% 
+%% Notes
+% Either input can be a simple vector, or a matrix.
+
+% REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+%	ver 2.0
+%	author: ThH
+%   date:   Aug-2017
+
+function vec_out = rotate_vector(vec_in, q_rot)
+
+% Check the input ...
+[vec_rows, vec_cols] = size(vec_in);
+[quat_rows, quat_cols] = size(q_rot);
+
+% ... 3D vector ....
+[vec_rows, vec_cols] = size(vec_in);
+if vec_cols ~= 3
+	disp(['The 3D vector in ' upper(mfilename) ' must have 3 columns!']);
+	vec_out = [];
+	return
+else	% add a q0-component, for the quaternion multiplication:
+	vec_in = [zeros(vec_rows, 1) vec_in];
+end
+
+% ... and quaternion:
+% if quat_cols ~= 3
+% 	disp(['The quaternion in ' upper(mfilename) ' must have 3 columns!']);
+% 	vec_out = [];
+% 	return
+% end
+
+% If the quaternion is constant for all 3D vectors ...
+if quat_rows == 1
+	q_rot = repmat(q_rot, vec_rows, 1);
+end
+
+% ... or if the 3D-vector is constant for all quaternions:
+if vec_rows == 1
+	vec_in = repmat(vec_in, quat_rows, 1);
+end
+
+% Rotate the vector ...
+vec_out = q_mult(q_rot, q_mult(vec_in, q_inv(q_rot)));
+
+%... and drop the inital "0"
+vec_out = vec_out(:,2:4);
+
+##### SOURCE END #####
+--></body></html>
