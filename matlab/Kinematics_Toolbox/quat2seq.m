@@ -40,7 +40,15 @@ switch seq
 case 'Euler'
         Rs = quat_convert(quats, 'rot_mat');
         
+        if prod(size(Rs)) == 9
+            Rs = reshape(Rs,1,9);
+        end
+            
         beta = acos(Rs(:,9));
+
+        % Catch numerical artefacts in quat_convert
+        epsilon = 1e-6;
+        beta(beta<epsilon) = 0;
         
         % special handling for (beta == 0)
         bz = (beta == 0);
