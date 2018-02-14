@@ -38,7 +38,7 @@ if strcmp(seq, 'Fick')
 end
 switch seq
 case 'Euler'
-        Rs = quat_convert(quats, 'rot_mat');
+        Rs = quat_convert(quats, 'rotmat');
         
         if prod(size(Rs)) == 9
             Rs = reshape(Rs,1,9);

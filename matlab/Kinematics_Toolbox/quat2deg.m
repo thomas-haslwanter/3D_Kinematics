@@ -33,7 +33,7 @@ function degree = quat2deg(in_quat)
 n_cols = size(in_quat, 2);
 
 
-if min(size(in_quat)) == 1
+if max(size(in_quat)) == 1
     degree = 2 * asin(in_quat) * 180/pi;
 else
     if n_cols~=3 & n_cols~=4

@@ -12,9 +12,9 @@
 %% Input Arguments
 % * in_quat -- Quaternions or quaternion vectors. (Quaternion vectors are
 % expanded to unit quaternions.)
-% * new_type -- Output type. Has to be "rot_mat" or "Gibbs"
+% * new_type -- Output type. Has to be "rotmat" or "Gibbs"
 %
-%     'rot_mat'  ->  rotation matrix
+%     'rotmat'  ->  rotation matrix
 %     'Gibbs'    -> Gibbs vector
 % 
 %% Output Arguments
@@ -30,7 +30,7 @@
 % More info under <http://en.wikipedia.org/wiki/Quaternion>
 % 
 %% Examples
-%    r = quat_convert([0, 0, 0.1], 'rot_mat')
+%    r = quat_convert([0, 0, 0.1], 'rotmat')
 %    reshape(r, 3,3)
 %
 
@@ -62,7 +62,7 @@ switch new_type
         gibbs(not_length_one) = 1./ sqrt( 1-q_length(not_length_one).^2 );
         Result = repmat(gibbs,1,3) .* in_quat;
         
-    case 'rot_mat'
+    case 'rotmat'
         R = zeros(9, num_data);
         q0 = q_scalar(in_quat)';
         q = q_vector(in_quat)';
