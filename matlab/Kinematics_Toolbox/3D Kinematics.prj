@@ -315,6 +315,7 @@ view Visualization of time-series data, and of 3D orientations</param.descriptio
       <file>${PROJECT_ROOT}\deg2quat.m</file>
       <file>${PROJECT_ROOT}\deg2rad.m</file>
       <file>${PROJECT_ROOT}\Examples</file>
+      <file>${PROJECT_ROOT}\files_tested.txt</file>
       <file>${PROJECT_ROOT}\find_trajectory.m</file>
       <file>${PROJECT_ROOT}\find_trajectory_demo.m</file>
       <file>${PROJECT_ROOT}\get_Xsens.m</file>

@@ -1,7 +1,7 @@
 %project_vector  Project one vector onto another
 %
 %% Syntax
-%    projected = project(v1, v2, dim)
+%    projected = project_vector(v1, v2, dim)
 %
 %% Input Arguments
 % * v1 -- Vector to be projected
@@ -16,11 +16,9 @@
 % 
 
 % --------------
-% Ver 0.1
 % author: ThH
-% date: Aug-2017
 
-function projected = project(v1, v2, dim)
+function projected = project_vector(v1, v2, dim)
 
 % make sure the "dim"-argument is 1 or 2
 if nargin == 2

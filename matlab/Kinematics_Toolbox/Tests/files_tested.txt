@@ -1,0 +1,50 @@
+Done
+====
+
+	analyze_3Dmarkers.m
+	analyze_imus.m
+X	calc_angvel.m
+X	calc_quat.m
+	check_input.m
+X	copysign.m
+X	deg2quat.m
+X	deg2rad.m
+X	find_trajectory.m
+	get_Xsens.m
+X	GramSchmidt.m
+	imu_Kalman.m
+	imu_Madgwick.m
+	imu_Mahony.m
+X	normalize.m
+X	plane_orientation.m
+X	project_vector.m
+X	quat2deg.m
+X	quat2seq.m
+X	quat_convert.m
+X	q_conj.m
+X	q_inv.m
+X	q_mult.m
+X	q_scalar.m
+X	q_shortest_rotation.m
+X	q_vector.m
+X	R.m
+X	rad2deg.m
+X	rotate_vector.m
+X	rotmat_convert.m
+X	R_s.m
+	savgol.m
+X	seq2quat.m
+X	sequence.m
+	target2orient.m
+X	toRow.m
+X	unit_q.m
+	vector_angle.m
+	vector_length.m
+	view_orientation.m
+
+ToDo
+====
+
+dh
+dh_s
+target2orient

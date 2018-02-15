@@ -4,7 +4,7 @@
 % authors:  ThH
 % ver:      0.1
 
-test = {'test_quaternions', 'test_rotmat', 'test_find_trajectory'};
+test = {'test_quaternions', 'test_rotmat', 'test_find_trajectory', 'test_vector'};
 
 for ii = 1:length(test)
 %     disp(test{ii});
