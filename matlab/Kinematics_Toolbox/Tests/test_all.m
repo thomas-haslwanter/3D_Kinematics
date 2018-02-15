@@ -2,10 +2,9 @@
 % Test runner for 3D Kinematics
 
 % authors:  ThH
-% date:     Aug-2017
 % ver:      0.1
 
-test = {'test_quaternions'};
+test = {'test_quaternions', 'test_rotmat', 'test_find_trajectory'};
 
 for ii = 1:length(test)
 %     disp(test{ii});

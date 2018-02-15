@@ -43,6 +43,9 @@ switch to
             R(1,3,:) - R(3,1,:);
             R(2,1,:) - R(1,2,:)];
         converted = 0.5 * copysign(X,Y);
+        q_0 = sqrt(1-sum(converted.^2));
+        converted = [q_0; converted]';
+%         converted = reshape(converted, 4, [])';
         
     case 'Gibbs'
         % since the "trace" command has difficulties in higher dimensions
@@ -51,8 +54,8 @@ switch to
             R(3,2,:)-R(2,3,:);
             R(1,3,:)-R(3,1,:);
             R(2,1,:)-R(1,2,:)] ./ (1 + trace_nd);
-        
+        converted = reshape(converted, 3, [])';
     otherwise
         error([upper(mfilename) ': Sorry, currently only ''quat'' and ''Gibbs'' are supported.'])
 end
-converted = reshape(converted, 3, [])';
+

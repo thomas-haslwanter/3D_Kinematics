@@ -22,7 +22,7 @@
 %% Notes
 %    The equations are longish, and can be found in 3D-Kinematics, 4.1.5 "Relation to Sequential Rotations"
 
-function quat = seq2quat(rot_angles, seq)
+function quats = seq2quat(rot_angles, seq)
 
 [num_data, num_cols] = size(rot_angles);
 
@@ -36,7 +36,7 @@ if strcmp(seq, 'Fick')
 end
 
 rot_angles = deg2rad(rot_angles);
-quats = nan * ones(length(rot_angles), 4);
+quats = nan * ones(num_data, 4);
 
 switch seq
 case 'Euler'

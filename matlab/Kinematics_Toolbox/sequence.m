@@ -7,19 +7,17 @@
 %% Input Arguments
 % * rot_mat -- Input rotation matrix [3x3], or matrices [Nx9]
 % * to -- Output format. Has to be one of the following:
-% Euler / Fick / aero / Helmholtz
+% Euler / Fick / nautical / Helmholtz
 %
 %     Euler <-> Rz * Rx * Rz
 %     Fick <-> Rz * Ry * Rx
-%     aero <-> same as "Fick"
+%     nautical <-> same as "Fick"
 %     Helmholtz <-> Ry * Rz * Rx
 %
 %% Output Arguments
-% * angles --- corresponding 3 rotation angles [alpha, beta, gamma]
+% * angles --- corresponding 3 rotation angles [alpha, beta, gamma],
+%           in the sequence of the rotation matrices
 % 
-%    alpha : first rotation(right-most matrix)
-%    beta : second rotation
-%    gamma : third rotation (left-most matrix)
 %
 %% Notes
 % The following formulas are used:
@@ -32,7 +30,7 @@
 %
 % $$\alpha   = arcsin(\frac{R_{zx}}{sin\beta})$$
 %
-% *aero / Fick*
+% *nautical / Fick*
 %
 % $$\theta   = arctan(\frac{R_{yx}}{R_{xx}})$$
 %
@@ -63,11 +61,11 @@ function angles = sequence(rot_mat, to)
 
 % Set the default
 if nargin == 1
-    to = 'aero'
+    to = 'nautical'
 end
 
-% "Fick" is the same as "aero"
-to = strrep(to, 'Fick', 'aero');
+% "Fick" is the same as "nautical"
+to = strrep(to, 'Fick', 'nautical');
 
 % for easier readability
 R = rot_mat;
@@ -77,19 +75,19 @@ if ~prod(size(rot_mat)==[3,3])
 end
 
 switch to
-    case 'aero'        
+    case 'nautical'        
         phi =  -asin(R(3,1,:));
         psi =   asin(R(3,2,:) ./ cos(phi) );
         theta = asin(R(2,1,:) ./ cos(phi) );
         
-        angles = reshape([psi, phi, theta], 3, [])';
+        angles = reshape([theta ,phi, psi], 3, [])';
         
     case 'Helmholtz'        
         theta = asin(R(2,1,:));
         psi =  -asin(R(2,3,:) ./ cos(theta) );
         phi = asin(R(3,1,:) ./ cos(theta) );
         
-        angles = reshape([psi, theta, phi], 3, [])';
+        angles = reshape([phi, theta, psi], 3, [])';
         
     case 'Euler'
         epsilon = 1e-6;
@@ -114,12 +112,12 @@ switch to
 %         alpha = asin(R(3,2,:) ./ cos(beta) );
 %         gamma = asin(R(2,1,:) ./ cos(beta) );
       
-        angles = reshape([alpha, beta, gamma], 3, [])';
+        angles = reshape([gamma, beta, alpha], 3, [])';
         
     otherwise
         error([upper(mfilename) ': Sorry, currently only the following options'
             'are supported:\n',
-            'aero [default]\n',
+            'nautical [default]\n',
             'Fick\n',
             'Helmholtz\n',
             'Euler\n'])
