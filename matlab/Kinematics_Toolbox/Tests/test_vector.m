@@ -175,3 +175,49 @@ function test_rad2deg(testCase)
     assertAlmostEqual(min(min(abs(correct-result))), 0);
 
 end
+
+
+%% Test vector_angle
+function test_vector_angle(testCase)
+    v1 = [1, 0, 0;
+          1, 0, 0;
+          0, 1, 0;
+          0, 1, 0];
+    v2 = [1, 1, 0;
+          sqrt(0.75), 0.5, 0;
+          1, 1, 0;
+          sqrt(0.75), 0.5, 0];
+
+    result = vector_angle(v1, v2) * 180/pi;
+    correct = [45, 30, 45, 60]';
+    errorMag = norm(result-correct);
+    assertAlmostEqual(errorMag, 0);
+
+    result = vector_angle(v1, v2, 1) * 180/pi;
+    errorMag = norm(result-correct);
+    assertAlmostEqual(errorMag, 0);
+    
+    result = vector_angle(v1', v2', 2) * 180/pi;
+    errorMag = norm(result-correct');
+    assertAlmostEqual(errorMag, 0);
+    
+    assertAlmostEqual(vector_angle(v1(1,:), v2(1,:))*180/pi, 45);
+end
+
+
+%% Test vector_length
+function test_vector_length(testCase)
+
+    vectors = [1, 0, 0;
+               2, 0, 0;
+               1, 1, 1];
+
+    result = vector_length(vectors);
+    correct = [1, 2, sqrt(3)]';
+
+    errorMag = norm(result-correct);
+    assertAlmostEqual(errorMag, 0);
+    
+    assertAlmostEqual(vector_length([1,2,3]), sqrt(14));
+
+end

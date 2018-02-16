@@ -32,14 +32,14 @@ X	rad2deg.m
 X	rotate_vector.m
 X	rotmat_convert.m
 X	R_s.m
-	savgol.m
+X	savgol.m
 X	seq2quat.m
 X	sequence.m
 	target2orient.m
 X	toRow.m
 X	unit_q.m
-	vector_angle.m
-	vector_length.m
+X	vector_angle.m
+X	vector_length.m
 	view_orientation.m
 
 ToDo

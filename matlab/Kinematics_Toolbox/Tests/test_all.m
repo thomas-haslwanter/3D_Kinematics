@@ -5,6 +5,7 @@
 % ver:      0.1
 
 test = {'test_quaternions', 'test_rotmat', 'test_find_trajectory', 'test_vector'};
+test = {'test_savgol'};
 
 for ii = 1:length(test)
 %     disp(test{ii});

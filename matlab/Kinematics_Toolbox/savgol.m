@@ -56,8 +56,6 @@
 
 % --------------
 % author: ThH
-% date: Sept-2016
-% ver: 3.0
 
 function y=savgol(x, pol_degree, win_size, deriv, rate)
 
@@ -82,6 +80,12 @@ elseif (nargin==4)
 end
 
 % Check the input format:
+[n_rows, n_cols] = size(x);
+if n_rows == 1
+    row_flag = 1;
+else
+    row_flag = 0;
+end
 [x, num_row, num_col] = check_input(x, win_size, pol_degree, deriv);
 look = (win_size-1)/2;
 
@@ -132,7 +136,11 @@ y(num_row-look+1:num_row,:)=a(look+2:win_size,:)*coef_mat*pa*x(num_row-win_size+
 % Put back the NaNs where they were:
 if ~isempty(nan_index)
 	y(nan_index) = NaN;
-end   
+end
+
+if row_flag == 1
+    y = y';
+end
 % ============================= THE END =======================================
 
 % Check the form of the input data

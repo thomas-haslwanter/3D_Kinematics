@@ -10,11 +10,9 @@
 % vector_length : Nx1 vector
 %       Length of vector
 %
-% vector_length :
-%	autor:  ThH 
-%   date:   Aug. 2017
-%	ver:    0.1
-% ****************************************************************
+
+% -----------
+% autor:  ThH 
 
 function v_length = vector_length(in_vector, dim)
 
