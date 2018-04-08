@@ -9,6 +9,8 @@ X	calc_quat.m
 X	copysign.m
 X	deg2quat.m
 X	deg2rad.m
+    dh.m
+    dh_s.m
 X	find_trajectory.m
 	get_Xsens.m
 X	GramSchmidt.m
@@ -35,6 +37,8 @@ X	R_s.m
 X	savgol.m
 X	seq2quat.m
 X	sequence.m
+    stm.m
+    stm_s.m
 	target2orient.m
 X	toRow.m
 X	unit_q.m
@@ -44,7 +48,3 @@ X	vector_length.m
 
 ToDo
 ====
-
-dh
-dh_s
-target2orient

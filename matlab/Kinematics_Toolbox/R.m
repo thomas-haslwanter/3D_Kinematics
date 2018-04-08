@@ -2,24 +2,23 @@
 % Rotation matrix for rotation about the "dim"-axis
 %
 %% Syntax
-%    R = R(dim, alpha) 
+%    r_mat = R(dim, alpha) 
 %
 %% Input Arguments
 % * dim -- Axis of rotation. Has to be "0", "1", or "2"
 % * alpha -- Angle of rotation [in degrees] 
 %
 %% Output Arguments
-% R -- Corresponding matrix for rotation of an object
+% r_mat -- Corresponding matrix for rotation of an object
 % 
 %% Examples
 %    R(2, 45)
 
 % ------------------
-% ver:      0.1
 % author:   ThH
-% date:     Aug-2017
+% date:     April-2018
 
-function R = R(dim, alpha)
+function r_mat = R(dim, alpha)
 
 % Check the input
 if ~any(dim == [1,2,3])
@@ -31,17 +30,17 @@ alpha = alpha * pi/180;
 
 switch dim
     case 1
-        R = 	[	1			0			0
+        r_mat = 	[	1			0			0
                 0			cos(alpha)		-sin(alpha)
                 0 			sin(alpha)		cos(alpha) ];
 
     case 2
-        R = 	[	cos(alpha)		0			sin(alpha)
+        r_mat = 	[	cos(alpha)		0			sin(alpha)
                 0			1			0
                 -sin(alpha)		0			cos(alpha) ];
 
     case 3
-        R =	[	cos(alpha)	-sin(alpha)	0
+        r_mat =	[	cos(alpha)	-sin(alpha)	0
                 sin(alpha)	cos(alpha)	0
                 0			0	1];
 end
