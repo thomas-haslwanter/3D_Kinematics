@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.toolbox" plugin-version="1.0">
-  <configuration build-checksum="151881987" file="D:\Users\thomas\Downloads\3D Kinematics - Matlab 2015a.prj" location="D:\Users\thomas\Downloads" name="3D Kinematics - Matlab 2015a" target="target.toolbox" target-name="Package Toolbox">
+  <configuration build-checksum="2081645445" file="D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\3D Kinematics - Matlab 2015a.prj" location="D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox" name="3D Kinematics - Matlab 2015a" target="target.toolbox" target-name="Package Toolbox">
     <param.appname>3D Kinematics - Matlab 2015a</param.appname>
     <param.authnamewatermark>Thomas Haslwanter</param.authnamewatermark>
     <param.email>thomas.haslwanter@fh-linz.at</param.email>
@@ -47,7 +47,7 @@ vector Functions for working with vectors
         also work on data arrays
 
 view Visualization of time-series data, and of 3D orientations</param.description>
-    <param.screenshot>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\kinematics.png</param.screenshot>
+    <param.screenshot>${PROJECT_ROOT}\kinematics.png</param.screenshot>
     <param.version>1.5</param.version>
     <param.output>${PROJECT_ROOT}\3D Kinematics - Matlab 2015a.mltbx</param.output>
     <param.products.name>
@@ -272,7 +272,7 @@ view Visualization of time-series data, and of 3D orientations</param.descriptio
 &lt;/examples&gt;</param.examples>
     <param.demosxml />
     <param.apps />
-    <param.docs>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\info.xml</param.docs>
+    <param.docs>${PROJECT_ROOT}\info.xml</param.docs>
     <unset>
       <param.authnamewatermark />
       <param.email />
@@ -287,62 +287,62 @@ view Visualization of time-series data, and of 3D orientations</param.descriptio
       <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox</file>
     </fileset.rootdir>
     <fileset.rootfiles>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\@MadgwickAHRS</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\@MahonyAHRS</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\@quat</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\analyze_3Dmarkers.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\analyze_imus.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\calc_angvel.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\calc_quat.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\check_input.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\copysign.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\data</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\deg2quat.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\deg2rad.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\demos.xml</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\dh.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\dh_s.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\Examples</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\find_trajectory.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\find_trajectory_demo.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\get_Xsens.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\GramSchmidt.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\html</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\imu_Kalman.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\imu_Madgwick.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\imu_Mahony.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\info.xml</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\kinematics.ico</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\kinematics.png</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\normalize.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\plane_orientation.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\project_vector.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\q_conj.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\q_inv.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\q_mult.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\q_scalar.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\q_shortest_rotation.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\q_vector.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\quat2deg.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\quat2seq.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\quat_convert.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\R.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\R_s.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\rad2deg.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\rotate_vector.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\rotmat_convert.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\savgol.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\seq2quat.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\sequence.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\stm.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\stm_s.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\target2orient.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\Tests</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\toRow.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\unit_q.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\vector_angle.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\vector_length.m</file>
-      <file>D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\view_orientation.m</file>
+      <file>${PROJECT_ROOT}\@MadgwickAHRS</file>
+      <file>${PROJECT_ROOT}\@MahonyAHRS</file>
+      <file>${PROJECT_ROOT}\@quat</file>
+      <file>${PROJECT_ROOT}\analyze_3Dmarkers.m</file>
+      <file>${PROJECT_ROOT}\analyze_imus.m</file>
+      <file>${PROJECT_ROOT}\calc_angvel.m</file>
+      <file>${PROJECT_ROOT}\calc_quat.m</file>
+      <file>${PROJECT_ROOT}\check_input.m</file>
+      <file>${PROJECT_ROOT}\copysign.m</file>
+      <file>${PROJECT_ROOT}\data</file>
+      <file>${PROJECT_ROOT}\deg2quat.m</file>
+      <file>${PROJECT_ROOT}\deg2rad.m</file>
+      <file>${PROJECT_ROOT}\demos.xml</file>
+      <file>${PROJECT_ROOT}\dh.m</file>
+      <file>${PROJECT_ROOT}\dh_s.m</file>
+      <file>${PROJECT_ROOT}\Examples</file>
+      <file>${PROJECT_ROOT}\find_trajectory.m</file>
+      <file>${PROJECT_ROOT}\find_trajectory_demo.m</file>
+      <file>${PROJECT_ROOT}\get_Xsens.m</file>
+      <file>${PROJECT_ROOT}\GramSchmidt.m</file>
+      <file>${PROJECT_ROOT}\html</file>
+      <file>${PROJECT_ROOT}\imu_Kalman.m</file>
+      <file>${PROJECT_ROOT}\imu_Madgwick.m</file>
+      <file>${PROJECT_ROOT}\imu_Mahony.m</file>
+      <file>${PROJECT_ROOT}\info.xml</file>
+      <file>${PROJECT_ROOT}\kinematics.ico</file>
+      <file>${PROJECT_ROOT}\kinematics.png</file>
+      <file>${PROJECT_ROOT}\normalize.m</file>
+      <file>${PROJECT_ROOT}\plane_orientation.m</file>
+      <file>${PROJECT_ROOT}\project_vector.m</file>
+      <file>${PROJECT_ROOT}\q_conj.m</file>
+      <file>${PROJECT_ROOT}\q_inv.m</file>
+      <file>${PROJECT_ROOT}\q_mult.m</file>
+      <file>${PROJECT_ROOT}\q_scalar.m</file>
+      <file>${PROJECT_ROOT}\q_shortest_rotation.m</file>
+      <file>${PROJECT_ROOT}\q_vector.m</file>
+      <file>${PROJECT_ROOT}\quat2deg.m</file>
+      <file>${PROJECT_ROOT}\quat2seq.m</file>
+      <file>${PROJECT_ROOT}\quat_convert.m</file>
+      <file>${PROJECT_ROOT}\R.m</file>
+      <file>${PROJECT_ROOT}\R_s.m</file>
+      <file>${PROJECT_ROOT}\rad2deg.m</file>
+      <file>${PROJECT_ROOT}\rotate_vector.m</file>
+      <file>${PROJECT_ROOT}\rotmat_convert.m</file>
+      <file>${PROJECT_ROOT}\savgol.m</file>
+      <file>${PROJECT_ROOT}\seq2quat.m</file>
+      <file>${PROJECT_ROOT}\sequence.m</file>
+      <file>${PROJECT_ROOT}\stm.m</file>
+      <file>${PROJECT_ROOT}\stm_s.m</file>
+      <file>${PROJECT_ROOT}\target2orient.m</file>
+      <file>${PROJECT_ROOT}\Tests</file>
+      <file>${PROJECT_ROOT}\toRow.m</file>
+      <file>${PROJECT_ROOT}\unit_q.m</file>
+      <file>${PROJECT_ROOT}\vector_angle.m</file>
+      <file>${PROJECT_ROOT}\vector_length.m</file>
+      <file>${PROJECT_ROOT}\view_orientation.m</file>
     </fileset.rootfiles>
     <fileset.depfun.included>
       <file>D:\Users\thomas\Documents\MATLAB\Toolboxes\3D Kinematics\@MadgwickAHRS\MadgwickAHRS.m</file>
@@ -393,7 +393,7 @@ view Visualization of time-series data, and of 3D orientations</param.descriptio
     <fileset.depfun.excluded />
     <fileset.package />
     <build-deliverables>
-      <file location="D:\Users\thomas\Downloads" name="3D Kinematics - Matlab 2015a.mltbx" optional="false">D:\Users\thomas\Downloads\3D Kinematics - Matlab 2015a.mltbx</file>
+      <file location="D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox" name="3D Kinematics - Matlab 2015a.mltbx" optional="false">D:\Users\thomas\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\3D Kinematics - Matlab 2015a.mltbx</file>
     </build-deliverables>
     <workflow />
     <matlab>

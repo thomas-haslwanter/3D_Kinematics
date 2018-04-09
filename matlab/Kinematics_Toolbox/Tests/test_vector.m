@@ -25,32 +25,34 @@ function assertAlmostEqual(a,b)
 
 end
 
-%% Test normalize
-function test_normalize(testCase)
+%% Test copysign
+function test_copysign(testCase)
+    x = [2,  3, 4, 5];
+    y = [-1, 0, 1, -1];
 
-    result = normalize([3, 0, 0]);
-    correct = [ 1, 0, 0];
+    result = copysign(x,y);
+    correct = [-2, 0, 4, -5];
+
     errorMag = norm(result-correct);
     assertAlmostEqual(errorMag, 0);
 
 end
 
-%% Test project
-function test_project_vector(testCase)
+%% Test deg2rad
+function test_deg2rad(testCase)
+    deg = [-45, 0, 90;
+            -90, 0, 45];
+    rad = [-pi/4, 0, pi/2;
+            -pi/2, 0, pi/4];
 
-    v1 = [1, 2, 3;
-          4, 5, 6];
-    v2 = [1,0,0;
-          0,1,0];
-    correct = [ 1, 0, 0;
-                0, 5, 0];
-    result = project_vector(v1,v2);
-    assertAlmostEqual(sum(sum(abs(result-correct))), 0);
-    
-    result = project_vector(v1,v2,1);
-    assertAlmostEqual(sum(sum(abs(result-correct))), 0);
-    
+    result = deg2rad(deg);
+    correct = rad;
+
+    assertAlmostEqual(min(min(abs(correct-result))), 0);
+
+    assertAlmostEqual(deg2rad(deg(1,1)), rad(1,1));
 end
+
 
 %% Test GramSchmidt
 function test_GramSchmidt(testCase)
@@ -65,6 +67,16 @@ function test_GramSchmidt(testCase)
     0.6882472, -0.22941573, -0.6882472 , 0.62872867, -0.28470732, 0.72363112, -0.36196138, -0.93075784, -0.05170877];
         
     assertAlmostEqual(sum(sum(abs(result-correct))), 0);
+
+end
+
+%% Test normalize
+function test_normalize(testCase)
+
+    result = normalize([3, 0, 0]);
+    correct = [ 1, 0, 0];
+    errorMag = norm(result-correct);
+    assertAlmostEqual(errorMag, 0);
 
 end
 
@@ -83,7 +95,24 @@ function test_plane_orientation(testCase)
     
     assertAlmostEqual(sum(sum(abs(result-correct))), 0);
 
+end
 
+
+%% Test project
+function test_project_vector(testCase)
+
+    v1 = [1, 2, 3;
+          4, 5, 6];
+    v2 = [1,0,0;
+          0,1,0];
+    correct = [ 1, 0, 0;
+                0, 5, 0];
+    result = project_vector(v1,v2);
+    assertAlmostEqual(sum(sum(abs(result-correct))), 0);
+    
+    result = project_vector(v1,v2,1);
+    assertAlmostEqual(sum(sum(abs(result-correct))), 0);
+    
 end
 
 %% Test q_shortest_rotation
@@ -122,6 +151,34 @@ function test_rotate_vector(testCase)
 end
 
 
+%% Test target2orient
+function test_target2orient(testCase)
+    a = [1,1,0];
+    b = [1., 0, 1];
+    angle = 45;
+    
+    result =  target2orient([a;b], 'Helmholtz');
+    correct = [ 0, angle, 0;
+                -angle, 0, 0];
+    assertAlmostEqual(sum(sum(abs(result-correct))), 0);
+
+    result =  target2orient([a;b], 'Fick');
+    correct = [ angle, 0, 0;
+                0, -angle, 0];
+    assertAlmostEqual(sum(sum(abs(result-correct))), 0);
+    
+    q_angle = deg2quat(angle);
+    result =  target2orient([a;b], 'quat');
+    correct = [ 0, 0, q_angle;
+                0, -q_angle, 0];
+    assertAlmostEqual(sum(sum(abs(result-correct))), 0);
+    
+    result =  target2orient([a], 'quat');
+    correct = [ 0, 0, q_angle];
+    assertAlmostEqual(sum(sum(abs(result-correct))), 0);
+end
+
+
 %% Test toRow
 function test_toRow(testCase)
     v_row = [1,2,3];
@@ -134,35 +191,6 @@ function test_toRow(testCase)
     assert(all(size(result) == size(v_row)));
 
 end
-
-%% Test copysign
-function test_copysign(testCase)
-    x = [2,  3, 4, 5];
-    y = [-1, 0, 1, -1];
-
-    result = copysign(x,y);
-    correct = [-2, 0, 4, -5];
-
-    errorMag = norm(result-correct);
-    assertAlmostEqual(errorMag, 0);
-
-end
-
-%% Test deg2rad
-function test_deg2rad(testCase)
-    deg = [-45, 0, 90;
-            -90, 0, 45];
-    rad = [-pi/4, 0, pi/2;
-            -pi/2, 0, pi/4];
-
-    result = deg2rad(deg);
-    correct = rad;
-
-    assertAlmostEqual(min(min(abs(correct-result))), 0);
-
-    assertAlmostEqual(deg2rad(deg(1,1)), rad(1,1));
-end
-
 
 %% Test rad2deg
 function test_rad2deg(testCase)
