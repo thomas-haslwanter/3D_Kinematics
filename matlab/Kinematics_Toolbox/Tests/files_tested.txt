@@ -39,7 +39,7 @@ X	seq2quat.m
 X	sequence.m
 X   stm.m
 X   stm_s.m
-	target2orient.m
+X	target2orient.m
 X	toRow.m
 X	unit_q.m
 X	vector_angle.m

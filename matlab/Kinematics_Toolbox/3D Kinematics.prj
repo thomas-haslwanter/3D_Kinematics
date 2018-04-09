@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.toolbox" plugin-version="1.0">
-  <configuration build-checksum="2160228267" file="C:\Users\p20529\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\3D Kinematics.prj" location="C:\Users\p20529\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox" name="3D Kinematics" target="target.toolbox" target-name="Package Toolbox">
+  <configuration build-checksum="3498996785" file="C:\Users\p20529\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox\3D Kinematics.prj" location="C:\Users\p20529\Data\CloudStation\3D_Kinematics\matlab\Kinematics_Toolbox" name="3D Kinematics" target="target.toolbox" target-name="Package Toolbox">
     <param.appname>3D Kinematics</param.appname>
     <param.authnamewatermark>Thomas Haslwanter</param.authnamewatermark>
     <param.email>thomas.haslwanter@fh-ooe.at</param.email>
