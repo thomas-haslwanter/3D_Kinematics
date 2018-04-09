@@ -1,4 +1,4 @@
-%TEST_FIND_TRAJECTORY
+% test_find_trajectory
 %
 % ver:      0.1
 % author:   ThH

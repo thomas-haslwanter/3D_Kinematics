@@ -2,8 +2,8 @@
 % Tests for quaternion-functions for the "3D_Kinematics toolbox"
 
 % authors:  ThH
-% date:     Aug-2017
-% ver:      0.1
+% date:     April-2018
+
 
 %% Main function to generate tests
 function tests = quatTest
@@ -71,14 +71,14 @@ end
 
 %% Test quat_convert
 function test_quat_convert(testCase)
-    result = quat_convert([0, 0, 0.1], 'rotmat')
+    result = quat_convert([0, 0, 0.1], 'rot_mat')
     correct = [ 0.98      , -0.19899749,  0.        ;
                 0.19899749,  0.98      ,  0.        ;
                 0.        ,  0.        ,  1.        ];
     errorMag = norm(result - correct)
     assertAlmostEqual(errorMag, 0);
 
-    result = quat_convert([0, 0, 0.1; 0, 0.1, 0], 'rotmat')
+    result = quat_convert([0, 0, 0.1; 0, 0.1, 0], 'rot_mat')
     correct = [ 0.98      , -0.19899749,  0.        ,  0.19899749,  0.98      , 0.        ,  0.        ,  0.        ,  1.        ;
                 0.98      ,  0.        ,  0.19899749,  0.        ,  1.        , 0.        , -0.19899749,  0.        ,  0.98      ];
     error = norm(result - correct)

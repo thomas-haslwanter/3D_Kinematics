@@ -62,7 +62,7 @@ switch new_type
         gibbs(not_length_one) = 1./ sqrt( 1-q_length(not_length_one).^2 );
         Result = repmat(gibbs,1,3) .* in_quat;
         
-    case 'rotmat'
+    case 'rot_mat'
         R = zeros(9, num_data);
         q0 = q_scalar(in_quat)';
         q = q_vector(in_quat)';
