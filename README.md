@@ -5,17 +5,16 @@ The book will be available from Springer, about March 2018
 
 <img src="images/cover.png" alt="Cover" width="400px"/>
 
-This repo contains two folders: *python*, *matlab*
+This repo has two folders, *python* and *matlab*, containing solutions to
+the exercises in the book, and (for Python) code-listings, i.e. the Python
+programs printed in the book.
 
+The programing tools for analyizing and working with 3-D data can be found under
 
-## "python": Python solutions
-All the Python programs that go with the book:
-- Solutions for the Exercises in the book
-- Code-listings, i.e. Python programs printed in the book
+* for Python: [scikit-kinematics](https://github.com/thomas-haslwanter/scikit-kinematics)
+* for Matlab: [3D-Kinematics toolbox](https://github.com/thomas-haslwanter/kinematics_toolbox.git)
 
-## "matlab": Matlab solutions
-- Solutions for the Exercises in the book
 
 ## Errata
-The file [Errata.txt](Errata.pdf) will contain the a list of mistakes in the manuscript, and
+The file [Errata.pdf](Errata.pdf) will contain the a list of mistakes in the manuscript, and
 the corresponding corrections.
