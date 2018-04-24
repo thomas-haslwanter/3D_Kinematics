@@ -1,9 +1,10 @@
 <img src="images/title.png" alt="Title" width="600px"/>
 
-Python and Matlab code, which accompany the book *3D Kinematics*
-The book will be available from Springer, about March 2018
+Python and Matlab code, which accompany the book *3D Kinematics*.
 
-<img src="images/cover.png" alt="Cover" width="400px"/>
+The book will be available from Springer (ca. June 2018)
+
+<img src="images/cover.png" alt="Cover" width="400px" text-align='center'/>
 
 This repo has two folders, *python* and *matlab*, containing solutions to
 the exercises in the book, and (for Python) code-listings, i.e. the Python
