@@ -44,7 +44,7 @@ axs[1].plot(t, np.rad2deg(omega_recalc))
 axs[1].set(xlabel = 'Time [sec]',
        ylabel = 'Angular Velocity [deg/s]',
        title = 'Back-transformation')
-axs[1].legend(['$\omega_0$', '$\omega_1$', '$\omega_2$'])
+axs[1].legend(['$\omega_x$', '$\omega_y$', '$\omega_z$'])
 
 # Save to file
 out_file = 'C5_examples_vel.png'

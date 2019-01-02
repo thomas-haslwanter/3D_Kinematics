@@ -1,6 +1,6 @@
 """Example for working with data from an IMU """
 
-# author: Thomas Haslwanter, date: Dec-2017
+# author: Thomas Haslwanter, date: Oct-2018
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -61,8 +61,7 @@ axs[1].set(title='3D orientation',
 # Note that the orientation is automatically re-calculated when the
 # "q_type" of the Sensor object is changed!
 
-my_imu.q_type = 'kalman'    # Using the "setter" method for "q_type", this 
-                            #executes the Kalman-filter
+my_imu.set_qtype('kalman')  # executes the Kalman-filter
 q_Kalman = my_imu.quat[:,1:]
 
 # Superpose the lines on the right figure

@@ -2,9 +2,10 @@
 
 Python and Matlab code, which accompany the book *3D Kinematics*.
 
-The book will be available from Springer (ca. June 2018)
+The book is [available from
+Springer](https://www.springer.com/in/book/9783319752761)
 
-<img src="images/cover.png" alt="Cover" width="400px" text-align='center'/>
+<img src="images/Cover.jpg" alt="Cover" width="400px" align="center"/>
 
 This repo has two folders, *python* and *matlab*, containing solutions to
 the exercises in the book, and (for Python) code-listings, i.e. the Python

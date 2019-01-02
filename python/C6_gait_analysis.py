@@ -2,7 +2,7 @@
 Calculation of 3-D knee orientation from IMU-data of upper- and lower-leg.
 
 '''
-# author: Thomas Haslwanter, date:   Dec-2017, Ver:    1.0
+# author: Thomas Haslwanter, date:   Jan-2018, Ver:    1.1
 
 # Import standard packages
 import numpy as np
@@ -28,8 +28,18 @@ sensor_ll = XSens(infile_ll, R_init=initial_orientation)
 q_upperLeg = Quaternion(sensor_ul.quat)
 q_lowerLeg = Quaternion(sensor_ll.quat)
 
-# Calculate the 3-D knee orientation
-knee = q_lowerLeg * q_upperLeg.inv()
+'''
+Calculate the 3-D knee orientation, using "Quaternion" objects
+Using the two rules for combined rotations
+    * From right to left 
+    * From the inside out
+we get that the orientation of the 
+    lower_leg = upper_leg * knee
+Bringing the "upper_leg" to the other side, we have
+    knee = inv(upper_leg) * lower_leg
+'''
+knee = q_upperLeg.inv() * q_lowerLeg
+
 
 # Show the results
 time = np.arange(len(knee)) / sensor_ul.rate
