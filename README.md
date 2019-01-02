@@ -5,8 +5,14 @@ Python and Matlab code, which accompany the book *3D Kinematics*.
 The book is [available from
 Springer](https://www.springer.com/in/book/9783319752761)
 
+<<<<<<< HEAD
 <img src="images/Cover.jpg" alt="Cover" width="400px" align="center"/>
 
+=======
+<p align="center">
+<img src="images/cover.png" alt="Cover" width="400px"/>
+</p>
+>>>>>>> ade7b7261bd9dfe53187b832d8c29da0cf9832b6
 This repo has two folders, *python* and *matlab*, containing solutions to
 the exercises in the book, and (for Python) code-listings, i.e. the Python
 programs printed in the book.
