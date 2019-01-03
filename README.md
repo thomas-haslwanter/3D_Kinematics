@@ -1,6 +1,6 @@
 <img src="images/Cover.jpg" alt="Cover" width="250px" align="center"/>
 
-The book is [available from
+The book is now [available from
 Springer](https://www.springer.com/in/book/9783319752761)
 
 This repo has two folders, *python* and *matlab*, containing solutions to
