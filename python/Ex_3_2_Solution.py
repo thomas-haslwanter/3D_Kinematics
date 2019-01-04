@@ -1,4 +1,4 @@
-""" Exercise 3.1: Calculate the trajectory of an observed particle, when
+""" Exercise 3.2: Calculate the trajectory of an observed particle, when
 location and orientation of the observer are changing.
 The velocities correspond to particle velocities in a central potential.
 

@@ -6,7 +6,7 @@ already with a sample rate of 1 kHz, artefacts sneak in!
 
 """
 
-# Author: Thomas Haslwanter, Date: Dec-2017
+# Author: Thomas Haslwanter, Date: Jan-2019
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -129,14 +129,17 @@ def show_data(data, phi, pos, length):
     # x,y plot of the position
     fig2, axs2 = plt.subplots(1, 2)
     axs2[0].plot(pos[:, 0], pos[:, 1])
-    axs2[0].set_title('Position plot')
+    axs2[0].set_title('Position: Y vs X')
     axs2[0].set_xlabel('X')
     axs2[0].set_ylabel('Y')
 
-    axs2[1].plot(pos[:, 0])
-    plt.hold(True)
-    axs2[1].plot(length * np.sin(phi), 'r')
+    axs2[1].plot(data['time'], pos[:, 0], label='X')
 
+    # and just to check if the results match
+    axs2[1].plot(data['time'], length * np.sin(phi), 'r', label='L*sin(Phi)')
+    axs2[1].legend
+    axs2[1].set_title('X(t)')
+    axs2[1].legend()
     plt.show()
 
 
