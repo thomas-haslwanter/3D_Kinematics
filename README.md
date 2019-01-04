@@ -14,5 +14,5 @@ The programing tools for analyizing and working with 3-D data can be found under
 
 
 ## Errata
-The file [Errata.pdf](Errata.pdf) will contain the a list of mistakes in the manuscript, and
+The file [Errata.pdf](Errata.pdf) contains a list of mistakes/changes in the manuscript, and
 the corresponding corrections.
